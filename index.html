@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BELZA Arcade - Free Mobile Games You Can Play Instantly</title>
+<meta name="description" content="BELZA Arcade is a free collection of mobile browser games by InTer, a BELZA CORP creation. Play Neon Dodge and more. No download, no sign-up.">
+<meta name="theme-color" content="#05050c">
+<meta property="og:title" content="BELZA Arcade - Free Mobile Games">
+<meta property="og:description" content="Free browser games that run on any phone. A BELZA CORP creation.">
+<meta property="og:type" content="website">
+<style>
+:root{--bg:#05050c;--cyan:#19f0ff;--pink:#ff2fb3;--yellow:#ffe94a;--dim:#8a93b0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%;background:var(--bg);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{overflow-x:hidden}
+
+/* ---------- INTRO ---------- */
+#intro{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column;
+align-items:center;justify-content:center;text-align:center;cursor:pointer;
+transition:opacity .9s ease,visibility .9s}
+#intro.out{opacity:0;visibility:hidden}
+.glow{position:absolute;width:70vmin;height:70vmin;border-radius:50%;
+background:radial-gradient(circle,rgba(25,240,255,.28),rgba(255,47,179,.12) 45%,transparent 70%);
+opacity:0;animation:glowin 2.4s ease .2s forwards}
+@keyframes glowin{0%{opacity:0;transform:scale(.4)}60%{opacity:1}100%{opacity:.85;transform:scale(1)}}
+.by{position:relative;font-size:clamp(14px,4vw,18px);letter-spacing:.5em;color:var(--dim);
+text-transform:uppercase;opacity:0;animation:rise 1s ease 1s forwards}
+.name{position:relative;margin-top:14px;font-size:clamp(46px,16vw,96px);font-weight:800;letter-spacing:.12em;
+display:flex;align-items:flex-end;justify-content:center;opacity:0;
+text-shadow:0 0 24px rgba(25,240,255,.8),0 0 60px rgba(25,240,255,.4);
+animation:rise 1.2s ease 1.6s forwards}
+/* the T drawn as a cross */
+.cross{position:relative;display:inline-block;width:.5em;height:.78em;margin:0 .06em 0 .02em}
+.cross::before,.cross::after{content:"";position:absolute;background:#fff;border-radius:.02em;
+box-shadow:0 0 14px var(--cyan),0 0 30px var(--cyan)}
+.cross::before{left:50%;top:-.04em;bottom:0;width:.11em;transform:translateX(-50%)}
+.cross::after{left:0;right:0;top:.2em;height:.11em}
+.corp{position:relative;margin-top:30px;font-size:clamp(13px,3.6vw,17px);letter-spacing:.32em;
+color:#cfd6ff;text-transform:uppercase;opacity:0;animation:rise 1.2s ease 3s forwards}
+.corp b{color:var(--yellow);font-weight:700;text-shadow:0 0 14px rgba(255,233,74,.6)}
+.skip{position:absolute;bottom:28px;font-size:12px;letter-spacing:.2em;color:#4b5270;opacity:0;
+animation:rise 1s ease 2s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- HUB ---------- */
+#hub{max-width:640px;margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 18px 40px;
+opacity:0;transition:opacity 1s ease .2s}
+#hub.show{opacity:1}
+.top{text-align:center;padding:26px 0 18px}
+.top h1{font-size:clamp(30px,9vw,44px);font-weight:800;letter-spacing:.08em;
+background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.top p{margin-top:8px;color:var(--dim);font-size:15px}
+.grid{display:grid;gap:14px;margin-top:14px}
+.card{position:relative;display:block;text-decoration:none;color:inherit;padding:18px;border-radius:18px;
+background:linear-gradient(160deg,#10112a,#0a0a18);border:1px solid #20244a;overflow:hidden;
+transition:transform .15s ease,border-color .2s}
+.card:active{transform:scale(.98)}
+.card.live{border-color:#1c6f7a;box-shadow:0 0 32px rgba(25,240,255,.12)}
+.card .tag{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;
+border-radius:20px;background:rgba(25,240,255,.12);color:var(--cyan);font-weight:700}
+.card.soon .tag{background:rgba(255,255,255,.06);color:var(--dim)}
+.card h2{margin-top:12px;font-size:22px}
+.card p{margin-top:6px;color:var(--dim);font-size:14.5px;line-height:1.45}
+.card .meta{margin-top:12px;font-size:13px;color:var(--yellow)}
+.card .play{position:absolute;right:16px;top:16px;font-weight:800;color:var(--cyan);font-size:14px}
+.card.soon{opacity:.55;pointer-events:none}
+.art{height:64px;margin:-4px 0 4px;position:relative}
+.art i{position:absolute;border-radius:50%}
+foot,.foot{display:block;text-align:center;margin-top:34px;color:#4b5270;font-size:12.5px;line-height:1.7;letter-spacing:.06em}
+.foot b{color:#7c86ad}
+</style>
+</head>
+<body>
+
+<div id="intro" role="button" aria-label="Skip intro">
+  <div class="glow"></div>
+  <div class="by">By</div>
+  <div class="name" aria-label="InTer"><span>I</span><span>n</span><span class="cross" aria-hidden="true"></span><span>e</span><span>r</span></div>
+  <div class="corp">A <b>BELZA CORP</b> creation</div>
+  <div class="skip">TAP TO SKIP</div>
+</div>
+
+<main id="hub">
+  <header class="top">
+    <h1>BELZA ARCADE</h1>
+    <p>Free games. Any phone. No download.</p>
+  </header>
+
+  <section class="grid" aria-label="Games">
+    <a class="card live" href="neondodge.html">
+      <span class="play">PLAY &rsaquo;</span>
+      <div class="art" aria-hidden="true">
+        <i style="left:6%;top:30px;width:16px;height:16px;background:#19f0ff;box-shadow:0 0 18px #19f0ff"></i>
+        <i style="left:34%;top:6px;width:26px;height:26px;background:#ff2fb3;box-shadow:0 0 18px #ff2fb3"></i>
+        <i style="left:62%;top:34px;width:20px;height:20px;background:#ff2fb3;box-shadow:0 0 18px #ff2fb3"></i>
+        <i style="left:82%;top:12px;width:12px;height:12px;background:#ffe94a;box-shadow:0 0 18px #ffe94a"></i>
+      </div>
+      <span class="tag">Arcade</span>
+      <h2>Neon Dodge</h2>
+      <p>Drag to dodge the falling blobs and grab glowing orbs. How long can you survive?</p>
+      <div class="meta" id="best"></div>
+    </a>
+
+    <div class="card soon">
+      <span class="tag">Coming soon</span>
+      <h2>Game #2</h2>
+      <p>A new BELZA game is on the way.</p>
+    </div>
+    <div class="card soon">
+      <span class="tag">Coming soon</span>
+      <h2>Daily Challenge</h2>
+      <p>One new puzzle every day, with a leaderboard.</p>
+    </div>
+  </section>
+
+  <p class="foot">&copy; 2026 <b>BELZA CORP</b><br>Created by InTer</p>
+</main>
+
+<script>
+(function(){
+  var intro=document.getElementById('intro'),hub=document.getElementById('hub'),done=false;
+  try{var b=+localStorage.getItem('neondodge_best')||0;
+    if(b)document.getElementById('best').textContent='Your best: '+b;}catch(e){}
+
+  function finish(){
+    if(done)return;done=true;
+    intro.classList.add('out');hub.classList.add('show');
+    try{sessionStorage.setItem('belza_intro','1')}catch(e){}
+    setTimeout(function(){intro.style.display='none'},1000);
+  }
+
+  var seen=false;try{seen=sessionStorage.getItem('belza_intro')==='1'}catch(e){}
+  if(seen){intro.style.display='none';hub.classList.add('show');done=true;}
+  else{intro.addEventListener('click',finish);setTimeout(finish,6200);}
+})();
+</script>
+</body>
+</html>
